@@ -1,0 +1,85 @@
+[gd_scene load_steps=12 format=3 uid="uid://b2briikrcngb6"]
+
+[ext_resource type="Texture2D" uid="uid://qx3nw27kln5y" path="res://art/splatter5.png" id="1_q2q5i"]
+[ext_resource type="Texture2D" uid="uid://gj4uhpsh4v3y" path="res://art/splatter4.png" id="2_0hska"]
+[ext_resource type="Texture2D" uid="uid://cx21p51q3ra4r" path="res://art/splatter3.png" id="3_g5eph"]
+[ext_resource type="Texture2D" uid="uid://8vppnyqm2dxx" path="res://art/splatter2.png" id="4_3duj0"]
+[ext_resource type="Texture2D" uid="uid://bw3iwtu0hnnqo" path="res://art/splatter1.png" id="5_ctojg"]
+[ext_resource type="Texture2D" uid="uid://dben3y51jmhk7" path="res://art/hand5.png" id="6_x8sjh"]
+[ext_resource type="Texture2D" uid="uid://d1lkvisls0apo" path="res://art/hand4.png" id="7_ngl8f"]
+[ext_resource type="Texture2D" uid="uid://bw8tt3n3jbodh" path="res://art/hand3.png" id="8_4q0wq"]
+[ext_resource type="Texture2D" uid="uid://dfixui4iqrjci" path="res://art/hand2.png" id="9_faf0o"]
+[ext_resource type="Texture2D" uid="uid://c3jmv8iby7keg" path="res://art/hand1.png" id="10_36cx8"]
+[ext_resource type="Texture2D" uid="uid://dpyqbpsn46gw" path="res://art/handfull.png" id="11_6p85g"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Blood" type="Node2D" parent="."]
+
+[node name="Splatter5" type="Sprite2D" parent="Blood"]
+visible = false
+position = Vector2(1400, 612)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("1_q2q5i")
+
+[node name="Splatter4" type="Sprite2D" parent="Blood"]
+visible = false
+position = Vector2(1400, 612)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_0hska")
+
+[node name="Splatter3" type="Sprite2D" parent="Blood"]
+visible = false
+position = Vector2(1400, 612)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_g5eph")
+
+[node name="Splatter2" type="Sprite2D" parent="Blood"]
+visible = false
+position = Vector2(1400, 612)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_3duj0")
+
+[node name="Splatter1" type="Sprite2D" parent="Blood"]
+visible = false
+position = Vector2(1400, 612)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("5_ctojg")
+
+[node name="Hand" type="Node2D" parent="."]
+
+[node name="Hand5" type="Sprite2D" parent="Hand"]
+position = Vector2(1400, 612)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_x8sjh")
+
+[node name="Hand4" type="Sprite2D" parent="Hand"]
+position = Vector2(1400, 612)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_ngl8f")
+
+[node name="Hand3" type="Sprite2D" parent="Hand"]
+position = Vector2(1400, 612)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("8_4q0wq")
+
+[node name="Hand2" type="Sprite2D" parent="Hand"]
+position = Vector2(1400, 612)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("9_faf0o")
+
+[node name="Hand1" type="Sprite2D" parent="Hand"]
+position = Vector2(1400, 612)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("10_36cx8")
+
+[node name="Handfull" type="Sprite2D" parent="Hand"]
+position = Vector2(1400, 612)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("11_6p85g")
