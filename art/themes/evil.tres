@@ -1,0 +1,44 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://bmbmdhlenint3"]
+
+[ext_resource type="FontFile" uid="uid://h5iw2kvbfewt" path="res://font/evil.ttf" id="1_ixym5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ern5j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rn1aa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6xhtr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_os6pe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0uq25"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mqxqo"]
+
+[resource]
+Button/colors/font_color = Color(0.788235, 0, 0.2, 1)
+Button/colors/font_disabled_color = Color(0, 0, 0, 1)
+Button/colors/font_focus_color = Color(0.788235, 0, 0.2, 1)
+Button/colors/font_hover_color = Color(0.788235, 0, 0.2, 1)
+Button/colors/font_hover_pressed_color = Color(0.788235, 0, 0.2, 1)
+Button/colors/font_outline_color = Color(0.454902, 0, 0, 1)
+Button/colors/font_pressed_color = Color(0, 0, 0, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/constants/outline_size = 15
+Button/font_sizes/font_size = 120
+Button/fonts/font = ExtResource("1_ixym5")
+Button/styles/disabled = SubResource("StyleBoxEmpty_ern5j")
+Button/styles/focus = SubResource("StyleBoxEmpty_rn1aa")
+Button/styles/hover = SubResource("StyleBoxEmpty_6xhtr")
+Button/styles/normal = SubResource("StyleBoxEmpty_os6pe")
+Button/styles/pressed = SubResource("StyleBoxEmpty_0uq25")
+Label/colors/font_color = Color(0.788235, 0, 0.2, 1)
+Label/colors/font_outline_color = Color(0.454902, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 20
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 250
+Label/fonts/font = ExtResource("1_ixym5")
+Label/styles/normal = SubResource("StyleBoxEmpty_mqxqo")

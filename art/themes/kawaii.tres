@@ -1,0 +1,70 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://ds7omknh44wa"]
+
+[ext_resource type="FontFile" uid="uid://l3ui5sg77m4r" path="res://font/kawaii.ttf" id="1_vbu5o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ptdom"]
+bg_color = Color(1, 0.501961, 0.643137, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 25
+border_color = Color(1, 0.14902, 0.454902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_itkrt"]
+bg_color = Color(1, 0.501961, 0.643137, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 20
+border_color = Color(1, 0.14902, 0.454902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02mbr"]
+bg_color = Color(1, 0.501961, 0.643137, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(1, 0.14902, 0.454902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mqxqo"]
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/constants/outline_size = 15
+Button/font_sizes/font_size = 120
+Button/fonts/font = ExtResource("1_vbu5o")
+Button/styles/disabled = SubResource("StyleBoxFlat_ptdom")
+Button/styles/focus = SubResource("StyleBoxFlat_ptdom")
+Button/styles/hover = SubResource("StyleBoxFlat_ptdom")
+Button/styles/normal = SubResource("StyleBoxFlat_itkrt")
+Button/styles/pressed = SubResource("StyleBoxFlat_02mbr")
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 20
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/constants/shadow_outline_size = 1
+Label/font_sizes/font_size = 250
+Label/fonts/font = ExtResource("1_vbu5o")
+Label/styles/normal = SubResource("StyleBoxEmpty_mqxqo")

@@ -1,0 +1,179 @@
+[gd_scene load_steps=10 format=3 uid="uid://dvmp2s2irk4am"]
+
+[ext_resource type="Texture2D" uid="uid://dfk0kw6ph2d1g" path="res://art/kawaiibg.png" id="1_5ogou"]
+[ext_resource type="Shader" path="res://art/shaders/kawaiimenu.gdshader" id="1_ba3xe"]
+[ext_resource type="Script" path="res://scripts/mainmenu.gd" id="1_j5o5d"]
+[ext_resource type="Theme" uid="uid://ds7omknh44wa" path="res://art/themes/kawaii.tres" id="3_jvlpm"]
+[ext_resource type="AudioStream" uid="uid://ds5h4xkheerpa" path="res://music/KawaiiMainMenu.mp3" id="4_6lbe0"]
+[ext_resource type="Texture2D" uid="uid://dhafkrseec6we" path="res://art/Evilbg.jpg" id="5_gg673"]
+[ext_resource type="Theme" uid="uid://bmbmdhlenint3" path="res://art/themes/evil.tres" id="6_32gwn"]
+[ext_resource type="AudioStream" uid="uid://diavsp3t7irr3" path="res://music/EvilMainMenu.mp3" id="7_e7b2i"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1w6ne"]
+shader = ExtResource("1_ba3xe")
+shader_parameter/scroll_speed = 0.047
+shader_parameter/angle_degrees = 45.0
+shader_parameter/repeat_x = 1.0
+shader_parameter/repeat_y = 1.0
+shader_parameter/row_offset = 0.19
+shader_parameter/texture_to_scroll = ExtResource("1_5ogou")
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j5o5d")
+
+[node name="KawaiiMenu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="KawaiiBG" type="TextureRect" parent="KawaiiMenu"]
+material = SubResource("ShaderMaterial_1w6ne")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_5ogou")
+
+[node name="Label" type="Label" parent="KawaiiMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -709.0
+offset_right = 710.0
+offset_bottom = 427.0
+grow_horizontal = 2
+theme = ExtResource("3_jvlpm")
+text = "CuteSweeper"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="KawaiiMenu"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -309.0
+offset_top = 326.0
+offset_right = 310.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 35
+alignment = 1
+
+[node name="Play" type="Button" parent="KawaiiMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_jvlpm")
+text = "Play
+"
+
+[node name="Settings" type="Button" parent="KawaiiMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_jvlpm")
+text = "Settings"
+
+[node name="Credits" type="Button" parent="KawaiiMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_jvlpm")
+text = "Credits"
+
+[node name="Quit" type="Button" parent="KawaiiMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_jvlpm")
+text = "Quit"
+
+[node name="EvilMenu" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_32gwn")
+
+[node name="EvilBG" type="TextureRect" parent="EvilMenu"]
+modulate = Color(1, 0.419608, 0.321569, 1)
+self_modulate = Color(1, 0.878431, 0.847059, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_gg673")
+
+[node name="Label" type="Label" parent="EvilMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -709.0
+offset_right = 710.0
+offset_bottom = 427.0
+grow_horizontal = 2
+theme = ExtResource("6_32gwn")
+text = "CuteSweeper"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EvilMenu"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -309.0
+offset_top = 326.0
+offset_right = 310.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 35
+alignment = 1
+
+[node name="Play" type="Button" parent="EvilMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_32gwn")
+text = "Play
+"
+
+[node name="Settings" type="Button" parent="EvilMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_32gwn")
+text = "Settings"
+
+[node name="Credits" type="Button" parent="EvilMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_32gwn")
+text = "Credits"
+
+[node name="Quit" type="Button" parent="EvilMenu/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_32gwn")
+text = "Quit"
+
+[node name="KawaiiAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6lbe0")
+volume_db = -10.0
+autoplay = true
+
+[node name="EvilAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_e7b2i")
+volume_db = -5.0
+
+[connection signal="pressed" from="KawaiiMenu/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="EvilMenu/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
