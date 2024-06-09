@@ -4,6 +4,9 @@ const GRID_SIZE = 6
 const NUM_MINES = 10
 
 @onready var grid_container = $GridContainer
+var evil = GameManager.evil
+var kawaii_cursor = load("res://cursors/kawaii_cursor.svg")
+var evil_cursor = load("res://cursors/evil_cursor.svg")
 
 var grid = []
 var mines = []
@@ -14,6 +17,32 @@ func _ready():
 	ensure_min_surrounding_mines()
 	update_cell_counts()
 	check_and_reshuffle()
+
+	if evil == false:
+		Input.set_custom_mouse_cursor(kawaii_cursor)
+		$Wood.modulate = Color("6b005b")
+	elif evil == true:
+		Input.set_custom_mouse_cursor(evil_cursor)
+		$Wood.modulate = Color("3d3d3d")
+
+	if GameManager.minesweeperlosecounter == 0:
+		%Handfull.visible = true
+	if GameManager.minesweeperlosecounter == 1:
+		%Hand1.visible = true
+	if GameManager.minesweeperlosecounter == 2:
+		%Hand2.visible = true
+	if GameManager.minesweeperlosecounter == 3:
+		%Hand3.visible = true
+	if GameManager.minesweeperlosecounter == 4:
+		%Hand4.visible = true
+	if GameManager.minesweeperlosecounter == 5:
+		%Hand5.visible = true
+
+func _physics_process(delta):
+	if GameManager.recentflag == true:
+		if Input.is_action_just_pressed("leftclick"):
+			GameManager.minesweeperlosecounter += 1
+			get_tree().change_scene_to_file("res://scenes/postgame.tscn")
 
 func initialize_grid():
 	grid_container.columns = GRID_SIZE
@@ -122,6 +151,7 @@ func _on_mine_clicked():
 				cell.texture_rect.texture = preload("res://art/Minesweeper/tilebomb.png")
 			elif cell.mine_count > 0:
 				cell.texture_rect.texture = cell.match_tile_texture(cell.mine_count)
+	GameManager.recentflag = true
 
 func reveal_adjacent_cells(x, y):
 	for dx in range(-1, 2):

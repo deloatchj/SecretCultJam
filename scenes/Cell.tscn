@@ -1,11 +1,29 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjy6e0svasxph"]
+[gd_scene load_steps=8 format=3 uid="uid://cjy6e0svasxph"]
 
 [ext_resource type="Script" path="res://scripts/Cell.gd" id="1_ckdnl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t447k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qnloe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oge7t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xh125"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_23k3b"]
+
+[sub_resource type="Theme" id="Theme_5g4du"]
+Button/styles/disabled = SubResource("StyleBoxEmpty_t447k")
+Button/styles/focus = SubResource("StyleBoxEmpty_qnloe")
+Button/styles/hover = SubResource("StyleBoxEmpty_oge7t")
+Button/styles/normal = SubResource("StyleBoxEmpty_xh125")
+Button/styles/pressed = SubResource("StyleBoxEmpty_23k3b")
 
 [node name="Button" type="Button"]
 custom_minimum_size = Vector2(128, 128)
 offset_right = 8.0
 offset_bottom = 8.0
+theme = SubResource("Theme_5g4du")
 script = ExtResource("1_ckdnl")
 
 [node name="TextureRect" type="TextureRect" parent="."]

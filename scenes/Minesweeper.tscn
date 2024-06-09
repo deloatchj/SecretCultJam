@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://b2briikrcngb6"]
+[gd_scene load_steps=14 format=3 uid="uid://b2briikrcngb6"]
 
 [ext_resource type="Texture2D" uid="uid://qx3nw27kln5y" path="res://art/splatter5.png" id="1_ijiu2"]
 [ext_resource type="Script" path="res://scripts/Minesweeper.gd" id="1_pbxi1"]
 [ext_resource type="Texture2D" uid="uid://gj4uhpsh4v3y" path="res://art/splatter4.png" id="2_lcfpr"]
+[ext_resource type="Texture2D" uid="uid://dhfcihu55job7" path="res://art/wood.jpg" id="2_tdjhu"]
 [ext_resource type="Texture2D" uid="uid://cx21p51q3ra4r" path="res://art/splatter3.png" id="3_gm5r4"]
 [ext_resource type="Texture2D" uid="uid://8vppnyqm2dxx" path="res://art/splatter2.png" id="4_m12wk"]
 [ext_resource type="Texture2D" uid="uid://bw3iwtu0hnnqo" path="res://art/splatter1.png" id="5_5jfi3"]
@@ -22,66 +23,97 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_pbxi1")
 
+[node name="Wood" type="TextureRect" parent="."]
+modulate = Color(0.419608, 0, 0.356863, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_tdjhu")
+
 [node name="Blood" type="Node2D" parent="."]
+unique_name_in_owner = true
+visible = false
 
 [node name="Splatter5" type="Sprite2D" parent="Blood"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(1400, 612)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_ijiu2")
 
 [node name="Splatter4" type="Sprite2D" parent="Blood"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(1400, 612)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_lcfpr")
 
 [node name="Splatter3" type="Sprite2D" parent="Blood"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(1400, 612)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_gm5r4")
 
 [node name="Splatter2" type="Sprite2D" parent="Blood"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(1400, 612)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("4_m12wk")
 
 [node name="Splatter1" type="Sprite2D" parent="Blood"]
+unique_name_in_owner = true
 visible = false
 position = Vector2(1400, 612)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("5_5jfi3")
 
 [node name="Hand" type="Node2D" parent="."]
+unique_name_in_owner = true
+visible = false
 
 [node name="Hand5" type="Sprite2D" parent="Hand"]
+unique_name_in_owner = true
+visible = false
 position = Vector2(1400, 612)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("6_lbath")
 
 [node name="Hand4" type="Sprite2D" parent="Hand"]
+unique_name_in_owner = true
+visible = false
 position = Vector2(1400, 612)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("7_1hsda")
 
 [node name="Hand3" type="Sprite2D" parent="Hand"]
+unique_name_in_owner = true
+visible = false
 position = Vector2(1400, 612)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("8_6wd8w")
 
 [node name="Hand2" type="Sprite2D" parent="Hand"]
+unique_name_in_owner = true
+visible = false
 position = Vector2(1400, 612)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("9_j448d")
 
 [node name="Hand1" type="Sprite2D" parent="Hand"]
+unique_name_in_owner = true
+visible = false
 position = Vector2(1400, 612)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("10_kqr8u")
 
 [node name="Handfull" type="Sprite2D" parent="Hand"]
+unique_name_in_owner = true
+visible = false
 position = Vector2(1400, 612)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("11_q12nr")
