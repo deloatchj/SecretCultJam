@@ -88,4 +88,8 @@ texture = ExtResource("11_q12nr")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
+offset_left = 120.0
+offset_top = 150.0
+offset_right = 120.0
+offset_bottom = 150.0
 columns = 6

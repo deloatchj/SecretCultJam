@@ -13,6 +13,7 @@ config_version=5
 config/name="SecretCultJam"
 run/main_scene="res://scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.2")
+boot_splash/image="res://art/splashscreen/splatter.png"
 config/icon="res://icon.svg"
 
 [autoload]
