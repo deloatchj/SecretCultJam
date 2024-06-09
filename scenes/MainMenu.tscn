@@ -175,5 +175,7 @@ autoplay = true
 stream = ExtResource("8_4dvgy")
 volume_db = -5.0
 
+[connection signal="pressed" from="KawaiiMenu/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="KawaiiMenu/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="EvilMenu/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="EvilMenu/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

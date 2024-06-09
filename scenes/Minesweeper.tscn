@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://b2briikrcngb6"]
+[gd_scene load_steps=13 format=3 uid="uid://b2briikrcngb6"]
 
 [ext_resource type="Texture2D" uid="uid://qx3nw27kln5y" path="res://art/splatter5.png" id="1_ijiu2"]
+[ext_resource type="Script" path="res://scripts/Minesweeper.gd" id="1_pbxi1"]
 [ext_resource type="Texture2D" uid="uid://gj4uhpsh4v3y" path="res://art/splatter4.png" id="2_lcfpr"]
 [ext_resource type="Texture2D" uid="uid://cx21p51q3ra4r" path="res://art/splatter3.png" id="3_gm5r4"]
 [ext_resource type="Texture2D" uid="uid://8vppnyqm2dxx" path="res://art/splatter2.png" id="4_m12wk"]
@@ -19,6 +20,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_pbxi1")
 
 [node name="Blood" type="Node2D" parent="."]
 
@@ -83,3 +85,7 @@ texture = ExtResource("10_kqr8u")
 position = Vector2(1400, 612)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("11_q12nr")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+columns = 6

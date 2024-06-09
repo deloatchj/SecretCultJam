@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjy6e0svasxph"]
+
+[ext_resource type="Script" path="res://scripts/Cell.gd" id="1_ckdnl"]
+
+[node name="Button" type="Button"]
+custom_minimum_size = Vector2(128, 128)
+offset_right = 8.0
+offset_bottom = 8.0
+script = ExtResource("1_ckdnl")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 0
