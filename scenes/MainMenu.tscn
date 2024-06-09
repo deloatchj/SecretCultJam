@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dvmp2s2irk4am"]
+[gd_scene load_steps=13 format=3 uid="uid://dvmp2s2irk4am"]
 
 [ext_resource type="Script" path="res://scripts/mainmenu.gd" id="1_bmddf"]
 [ext_resource type="Shader" path="res://art/shaders/kawaiimenu.gdshader" id="2_030e5"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://dhafkrseec6we" path="res://art/Evilbg.jpg" id="6_5bm8o"]
 [ext_resource type="AudioStream" uid="uid://ds5h4xkheerpa" path="res://music/KawaiiMainMenu.mp3" id="7_s34qa"]
 [ext_resource type="AudioStream" uid="uid://diavsp3t7irr3" path="res://music/EvilMainMenu.mp3" id="8_4dvgy"]
+[ext_resource type="Texture2D" uid="uid://dvpp2ee3wa3ne" path="res://art/splashscreen/chak_logo.png" id="9_35llj"]
+[ext_resource type="FontFile" uid="uid://l3ui5sg77m4r" path="res://font/kawaii.ttf" id="9_jp65u"]
+[ext_resource type="Texture2D" uid="uid://dj0c68kij50tx" path="res://art/splashscreen/jerridelo_logo.png" id="11_6yydy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1w6ne"]
 shader = ExtResource("2_030e5")
@@ -34,6 +37,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("4_pu2g8")
 
 [node name="KawaiiBG" type="TextureRect" parent="KawaiiMenu"]
 material = SubResource("ShaderMaterial_1w6ne")
@@ -166,6 +170,146 @@ layout_mode = 2
 theme = ExtResource("5_ngr0d")
 text = "Quit"
 
+[node name="Credits" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="ColorRect" type="ColorRect" parent="Credits"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.67451)
+
+[node name="Scroller" type="Control" parent="Credits"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Credits/Scroller"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Spacer" type="Control" parent="Credits/Scroller/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Credits/Scroller/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_jp65u")
+theme_override_font_sizes/font_size = 150
+text = "A game by"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer2" type="Control" parent="Credits/Scroller/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Team" type="HBoxContainer" parent="Credits/Scroller/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="Credits/Scroller/VBoxContainer/Team"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="chak" type="TextureRect" parent="Credits/Scroller/VBoxContainer/Team"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("9_35llj")
+
+[node name="Spacer2" type="Control" parent="Credits/Scroller/VBoxContainer/Team"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="jerridelo" type="TextureRect" parent="Credits/Scroller/VBoxContainer/Team"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("11_6yydy")
+
+[node name="Spacer3" type="Control" parent="Credits/Scroller/VBoxContainer/Team"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Spacer3" type="Control" parent="Credits/Scroller/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Credits/Scroller/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_jp65u")
+theme_override_font_sizes/font_size = 70
+text = "Song Credits"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer4" type="Control" parent="Credits/Scroller/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="SongCredits" type="HBoxContainer" parent="Credits/Scroller/VBoxContainer"]
+layout_mode = 2
+
+[node name="Spacer4" type="Control" parent="Credits/Scroller/VBoxContainer/SongCredits"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="Credits/Scroller/VBoxContainer/SongCredits"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_jp65u")
+theme_override_font_sizes/font_size = 34
+text = "\"Happy Boy Theme \" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer5" type="Control" parent="Credits/Scroller/VBoxContainer/SongCredits"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Credits/Scroller/VBoxContainer/SongCredits"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("9_jp65u")
+theme_override_font_sizes/font_size = 34
+text = "\"SCP-x4x \" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0 License
+http://creativecommons.org/licenses/by/4.0/"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer6" type="Control" parent="Credits/Scroller/VBoxContainer/SongCredits"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="Spacer5" type="Control" parent="Credits/Scroller/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Back" type="Button" parent="Credits"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -313.0
+offset_top = -164.0
+offset_right = -12.0
+offset_bottom = -22.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("4_pu2g8")
+text = "Back"
+
 [node name="KawaiiAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_s34qa")
 volume_db = -10.0
@@ -176,6 +320,9 @@ stream = ExtResource("8_4dvgy")
 volume_db = -5.0
 
 [connection signal="pressed" from="KawaiiMenu/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="KawaiiMenu/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="KawaiiMenu/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="EvilMenu/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="EvilMenu/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="EvilMenu/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Credits/Back" to="." method="_on_back_pressed"]

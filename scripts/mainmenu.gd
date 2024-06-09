@@ -1,7 +1,7 @@
 extends Control
 
 var evil : bool
-
+@onready var lastui = $KawaiiMenu
 var kawaii_cursor = load("res://cursors/kawaii_cursor.svg")
 var evil_cursor = load("res://cursors/evil_cursor.svg")
 
@@ -10,6 +10,7 @@ func _ready():
 	
 func detect(evilstate):
 	if evilstate == false:
+		lastui = $KawaiiMenu
 		$KawaiiMenu.visible = true
 		$KawaiiAudio.play()
 		Input.set_custom_mouse_cursor(kawaii_cursor)
@@ -18,6 +19,7 @@ func detect(evilstate):
 		$EvilAudio.stop()
 		
 	elif evilstate == true:
+		lastui = $EvilMenu
 		$EvilMenu.visible = true
 		$EvilAudio.play()
 		Input.set_custom_mouse_cursor(evil_cursor)
@@ -33,6 +35,14 @@ func _unhandled_input(_event):
 func _on_quit_pressed():
 	get_tree().quit()
 
-
 func _on_play_pressed():
 	get_tree().change_scene_to_file("res://scenes/Minesweeper.tscn")
+
+func _on_back_pressed():
+	lastui.visible = true
+	$Credits.visible = false
+
+func _on_credits_pressed():
+	$Credits/Back.theme = lastui.theme
+	$Credits.visible = true
+	lastui.visible = false
