@@ -39,7 +39,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("4_pu2g8")
 
-[node name="KawaiiBG" type="TextureRect" parent="KawaiiMenu"]
+[node name="BG" type="TextureRect" parent="KawaiiMenu"]
 material = SubResource("ShaderMaterial_1w6ne")
 layout_mode = 1
 anchors_preset = 15
@@ -109,7 +109,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("5_ngr0d")
 
-[node name="EvilBG" type="TextureRect" parent="EvilMenu"]
+[node name="BG" type="TextureRect" parent="EvilMenu"]
 modulate = Color(1, 0.419608, 0.321569, 1)
 self_modulate = Color(1, 0.878431, 0.847059, 1)
 layout_mode = 1
@@ -176,11 +176,10 @@ anchors_preset = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="ColorRect" type="ColorRect" parent="Credits"]
+[node name="CreditsBG" type="TextureRect" parent="Credits"]
 layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
-color = Color(0, 0, 0, 0.67451)
 
 [node name="Scroller" type="Control" parent="Credits"]
 layout_mode = 1
