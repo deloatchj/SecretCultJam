@@ -5,6 +5,7 @@ signal mine_clicked
 
 var is_mine = false
 var mine_count = 0
+var is_flagged = false
 
 var texture_bomb
 var texture_tile0
@@ -13,7 +14,7 @@ var texture_tile2
 var texture_tile3
 var texture_tile4
 var texture_tile5
-
+var texture_flag
 
 @onready var texture_rect = $TextureRect
 
@@ -25,6 +26,8 @@ func _ready():
 	texture_tile3 = preload("res://art/Minesweeper/tile3.png")
 	texture_tile4 = preload("res://art/Minesweeper/tile4.png")
 	texture_tile5 = preload("res://art/Minesweeper/tile5.png")
+	texture_flag = preload("res://art/Minesweeper/tileflag.png")
+
 	connect("pressed", Callable(self, "_on_pressed"))
 	_update_texture()
 
@@ -37,6 +40,8 @@ func set_mine_count(value):
 	_update_texture()
 
 func _on_pressed():
+	if is_flagged:
+		return
 	if is_mine:
 		texture_rect.texture = texture_bomb
 		emit_signal("mine_clicked")
@@ -47,7 +52,7 @@ func _on_pressed():
 			texture_rect.texture = texture_tile0
 		if mine_count == 0:
 			reveal_neighbors()
-	disabled = true
+		disabled = true
 	emit_signal("revealed", self)
 
 func match_tile_texture(count):
@@ -62,10 +67,21 @@ func match_tile_texture(count):
 			return texture_tile4
 		5:
 			return texture_tile5
-		
+
 func reveal_neighbors():
 	pass
 
 func _update_texture():
 	if !is_mine and mine_count == 0:
 		texture_rect.texture = texture_tile0
+
+func _gui_input(event):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+		if is_flagged:
+			texture_rect.texture = texture_tile0
+			is_flagged = false
+		else:
+			# Place the flag
+			texture_rect.texture = texture_flag
+			is_flagged = true
+		return
