@@ -3,7 +3,6 @@ extends Control
 var losestate = GameManager.minesweeperlosecounter
 var recentlose = GameManager.recentflag
 
-<<<<<<< HEAD
 #func _physics_process(_delta):
 	#if Input.is_action_just_pressed("one"):
 		#$AnimationPlayer.play("fulltoone")
@@ -17,7 +16,7 @@ var recentlose = GameManager.recentflag
 		#$AnimationPlayer.play("fourtofive")
 	#if Input.is_action_just_pressed("fail"):
 		#$AnimationPlayer.play("final_fail")
-=======
+
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("one"):
 		$AnimationPlayer.play("fulltoone")
@@ -34,7 +33,6 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("toggle"):
 		GameManager.recentflag = false
 		get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
->>>>>>> c3228104e3f3219ef82831da91116a5b619225e0
 
 func _ready():
 	var evil_cursor = load("res://cursors/evil_cursor.svg")
