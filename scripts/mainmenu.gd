@@ -1,12 +1,12 @@
 extends Control
 
-var evil : bool
+var evil = GameManager.evil
 @onready var lastui = $KawaiiMenu
 var kawaii_cursor = load("res://cursors/kawaii_cursor.svg")
 var evil_cursor = load("res://cursors/evil_cursor.svg")
 
 func _ready():
-	evil = false
+	detect(evil)
 	
 func detect(evilstate):
 	if evilstate == false:
