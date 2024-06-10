@@ -17,6 +17,7 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("fail"):
 		$AnimationPlayer.play("final_fail")
 	if Input.is_action_just_pressed("toggle"):
+		GameManager.recentflag = false
 		get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
 
 func _ready():
