@@ -5,7 +5,7 @@ signal mine_clicked
 
 var is_mine = false
 var mine_count = 0
-var is_flagged = false  # Add a flag state
+var is_flagged = false
 
 var texture_bomb
 var texture_tile0
@@ -14,9 +14,11 @@ var texture_tile2
 var texture_tile3
 var texture_tile4
 var texture_tile5
-var texture_flag  # Add a variable for the flag texture
+var texture_flag 
 
 @onready var texture_rect = $TextureRect
+
+
 
 func _ready():
 	texture_bomb = preload("res://art/Minesweeper/tilebomb.png")
@@ -26,7 +28,7 @@ func _ready():
 	texture_tile3 = preload("res://art/Minesweeper/tile3.png")
 	texture_tile4 = preload("res://art/Minesweeper/tile4.png")
 	texture_tile5 = preload("res://art/Minesweeper/tile5.png")
-	texture_flag = preload("res://art/Minesweeper/tileflag.png")  # Preload the flag texture
+	texture_flag = preload("res://art/Minesweeper/tileflag.png")
 
 	connect("pressed", Callable(self, "_on_pressed"))
 	_update_texture()
@@ -82,10 +84,13 @@ func _gui_input(event):
 				# Remove the flag if already flagged
 				texture_rect.texture = texture_tile0
 				is_flagged = false
+				GameManager.remove_flag()
 			else:
 				# Place the flag
-				texture_rect.texture = texture_flag
-				is_flagged = true
+				if GameManager.can_place_flag():
+					texture_rect.texture = texture_flag
+					is_flagged = true
+					GameManager.place_flag()
 			return
 
 func _input(event):
