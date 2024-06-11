@@ -29,14 +29,19 @@ func _ready():
 		%Handfull.visible = true
 	if GameManager.minesweeperlosecounter == 1:
 		%Hand1.visible = true
+		%Splatter1.visible = true
 	if GameManager.minesweeperlosecounter == 2:
 		%Hand2.visible = true
+		%Splatter2.visible = true
 	if GameManager.minesweeperlosecounter == 3:
 		%Hand3.visible = true
+		%Splatter3.visible = true
 	if GameManager.minesweeperlosecounter == 4:
 		%Hand4.visible = true
+		%Splatter4.visible = true
 	if GameManager.minesweeperlosecounter == 5:
 		%Hand5.visible = true
+		%Splatter5.visible = true
 
 func _physics_process(delta):
 	if GameManager.recentflag == true:
@@ -162,3 +167,8 @@ func reveal_adjacent_cells(x, y):
 				var cell = grid[nx][ny]
 				if not cell.disabled and not cell.is_mine:
 					cell._on_pressed()
+
+
+func _on_audio_stream_player_finished():
+	await get_tree().create_timer(randi_range(1,3)).timeout
+	$AudioStreamPlayer.play()

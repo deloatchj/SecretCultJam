@@ -72,5 +72,10 @@ func _ready():
 		GameManager.evil = true
 
 func _on_button_pressed():
-		GameManager.recentflag = false
-		get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
+	GameManager.recentflag = false
+	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
+
+
+func _on_continue_pressed():
+	GameManager.recentflag = false
+	get_tree().change_scene_to_file("res://scenes/bad_ending.tscn")

@@ -1,0 +1,17 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamWAV"
+uid="uid://n8qu1ow3hhq4"
+path="res://.godot/imported/clcik_6.sfxr-c85f590af146ce46b1f5872b8ca7cb7a.sample"
+
+[deps]
+
+source_file="res://sounds/clcik_6.sfxr"
+dest_files=["res://.godot/imported/clcik_6.sfxr-c85f590af146ce46b1f5872b8ca7cb7a.sample"]
+
+[params]
+
+loop=false
+bit_depth=0
+sample_rate=0

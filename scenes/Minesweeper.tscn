@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://b2briikrcngb6"]
+[gd_scene load_steps=24 format=3 uid="uid://b2briikrcngb6"]
 
 [ext_resource type="Texture2D" uid="uid://qx3nw27kln5y" path="res://art/splatter5.png" id="1_ijiu2"]
 [ext_resource type="Script" path="res://scripts/Minesweeper.gd" id="1_pbxi1"]
 [ext_resource type="Texture2D" uid="uid://gj4uhpsh4v3y" path="res://art/splatter4.png" id="2_lcfpr"]
 [ext_resource type="Texture2D" uid="uid://dhfcihu55job7" path="res://art/wood.jpg" id="2_tdjhu"]
+[ext_resource type="Texture2D" uid="uid://bqo6biv30akmq" path="res://art/themes/blood_vignette.png" id="3_8qq52"]
 [ext_resource type="Texture2D" uid="uid://cx21p51q3ra4r" path="res://art/splatter3.png" id="3_gm5r4"]
 [ext_resource type="Texture2D" uid="uid://8vppnyqm2dxx" path="res://art/splatter2.png" id="4_m12wk"]
 [ext_resource type="Texture2D" uid="uid://bw3iwtu0hnnqo" path="res://art/splatter1.png" id="5_5jfi3"]
@@ -13,6 +14,35 @@
 [ext_resource type="Texture2D" uid="uid://dfixui4iqrjci" path="res://art/hand2.png" id="9_j448d"]
 [ext_resource type="Texture2D" uid="uid://c3jmv8iby7keg" path="res://art/hand1.png" id="10_kqr8u"]
 [ext_resource type="Texture2D" uid="uid://dpyqbpsn46gw" path="res://art/handfull.png" id="11_q12nr"]
+[ext_resource type="AudioStream" uid="uid://dhveja52alilo" path="res://sounds/clcik_2.sfxr" id="15_ksn8s"]
+[ext_resource type="AudioStream" uid="uid://1vtex8vuww5b" path="res://sounds/clcik_3.sfxr" id="16_thywq"]
+[ext_resource type="AudioStream" uid="uid://bntrn3iceyqgb" path="res://sounds/clcik_4.sfxr" id="17_0w5l6"]
+[ext_resource type="AudioStream" uid="uid://n8qu1ow3hhq4" path="res://sounds/clcik_6.sfxr" id="18_nwclr"]
+[ext_resource type="AudioStream" uid="uid://3j7fuqtxw3og" path="res://sounds/clcik_5.sfxr" id="18_ymu6w"]
+[ext_resource type="AudioStream" uid="uid://bk6hmtoh1uar4" path="res://sounds/clcik_7.sfxr" id="19_6x35v"]
+[ext_resource type="AudioStream" uid="uid://b4piend5wxmi0" path="res://sounds/clcik_8.sfxr" id="20_sct44"]
+[ext_resource type="AudioStream" uid="uid://b52jmeg1i2x7y" path="res://sounds/clcik_9.sfxr" id="21_8h0gd"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1m131"]
+playback_mode = 1
+random_pitch = 10.0
+streams_count = 8
+stream_0/stream = ExtResource("15_ksn8s")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("16_thywq")
+stream_1/weight = 1.0
+stream_2/stream = ExtResource("17_0w5l6")
+stream_2/weight = 1.0
+stream_3/stream = ExtResource("18_ymu6w")
+stream_3/weight = 1.0
+stream_4/stream = ExtResource("18_nwclr")
+stream_4/weight = 1.0
+stream_5/stream = ExtResource("19_6x35v")
+stream_5/weight = 1.0
+stream_6/stream = ExtResource("20_sct44")
+stream_6/weight = 1.0
+stream_7/stream = ExtResource("21_8h0gd")
+stream_7/weight = 1.0
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -33,9 +63,15 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_tdjhu")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.298039)
+texture_filter = 1
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("3_8qq52")
+
 [node name="Blood" type="Node2D" parent="."]
 unique_name_in_owner = true
-visible = false
 
 [node name="Splatter5" type="Sprite2D" parent="Blood"]
 unique_name_in_owner = true
@@ -74,7 +110,6 @@ texture = ExtResource("5_5jfi3")
 
 [node name="Hand" type="Node2D" parent="."]
 unique_name_in_owner = true
-visible = false
 
 [node name="Hand5" type="Sprite2D" parent="Hand"]
 unique_name_in_owner = true
@@ -125,3 +160,11 @@ offset_top = 150.0
 offset_right = 120.0
 offset_bottom = 150.0
 columns = 6
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_1m131")
+volume_db = -20.0
+pitch_scale = 0.5
+autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
