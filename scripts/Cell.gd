@@ -18,8 +18,6 @@ var texture_flag
 
 @onready var texture_rect = $TextureRect
 
-
-
 func _ready():
 	texture_bomb = preload("res://art/Minesweeper/tilebomb.png")
 	texture_tile0 = preload("res://art/Minesweeper/tile0.png")
@@ -101,4 +99,3 @@ func _input(event):
 func reset_game():
 	print("Resetting the game...")
 	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
-
