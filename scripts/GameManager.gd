@@ -10,13 +10,9 @@ var winstate : bool = false
 var max_flags = 10
 var current_flags = 0
 
-# TODO: increment losestate whenever player loses
-# TODO: Make sure its impossible for state to cross 6
-# TODO: use 'evil' to determine main menu UI
-
 func _ready():
 	pass
-
+	
 func _physics_process(_delta):
 	if minesweeperlosecounter > 0:
 		evil = true
@@ -38,3 +34,7 @@ func place_flag():
 func remove_flag():
 	if current_flags > 0:
 		current_flags -= 1
+
+func set_max_flags(num_mines):
+	max_flags = num_mines
+	current_flags = 0
