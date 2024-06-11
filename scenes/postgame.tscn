@@ -1734,4 +1734,19 @@ grow_vertical = 0
 theme = ExtResource("21_nstte")
 text = "BACK"
 
+[node name="Button" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -592.0
+offset_top = -135.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("21_nstte")
+text = "CONTINUE . . ."
+
 [connection signal="pressed" from="Back" to="." method="_on_button_pressed"]
