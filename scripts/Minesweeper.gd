@@ -4,12 +4,14 @@ const GRID_SIZE = 6
 const NUM_MINES = 10
 
 @onready var grid_container = $GridContainer
+@onready var mine_count_label = $MineCountLabel
+
 var evil = GameManager.evil
 var kawaii_cursor = load("res://cursors/kawaii_cursor.svg")
 var evil_cursor = load("res://cursors/evil_cursor.svg")
 
 var grid = []
-var mines = []
+@onready var mines = []
 
 func _ready():
 	initialize_grid()
@@ -17,7 +19,8 @@ func _ready():
 	ensure_min_surrounding_mines()
 	update_cell_counts()
 	check_and_reshuffle()
-
+	update_mine_count()
+	
 	if evil == false:
 		Input.set_custom_mouse_cursor(kawaii_cursor)
 		$Wood.modulate = Color("6b005b")
@@ -42,12 +45,30 @@ func _ready():
 	if GameManager.minesweeperlosecounter == 5:
 		%Hand5.visible = true
 		%Splatter5.visible = true
+	
 
-func _physics_process(delta):
+		
+func _physics_process(_delta):
 	if GameManager.recentflag == true:
 		if Input.is_action_just_pressed("leftclick"):
 			GameManager.minesweeperlosecounter += 1
 			get_tree().change_scene_to_file("res://scenes/postgame.tscn")
+
+	# Check for win condition
+	if check_win_condition():
+		GameManager.minesweeperwincounter += 1
+		get_tree().change_scene_to_file("res://scenes/postgame.tscn")
+
+func check_win_condition() -> bool:
+	var revealed_non_mine_cells = 0
+	for x in range(GRID_SIZE):
+		for y in range(GRID_SIZE):
+			var cell = grid[x][y]
+			if cell.disabled and not cell.is_mine:
+				revealed_non_mine_cells += 1
+	if revealed_non_mine_cells == GRID_SIZE * GRID_SIZE - NUM_MINES:
+		return true
+	return false
 
 func initialize_grid():
 	grid_container.columns = GRID_SIZE
@@ -163,12 +184,17 @@ func reveal_adjacent_cells(x, y):
 		for dy in range(-1, 2):
 			var nx = x + dx
 			var ny = y + dy
-			if nx >= 0 and ny >= 0 and nx < GRID_SIZE and ny < GRID_SIZE:
+			if nx >= 0 and ny >= 0 and nx < GRID_SIZE:
 				var cell = grid[nx][ny]
 				if not cell.disabled and not cell.is_mine:
 					cell._on_pressed()
 
-
 func _on_audio_stream_player_finished():
-	await get_tree().create_timer(randi_range(1,3)).timeout
+	await get_tree().create_timer(randi_range(1, 3)).timeout
 	$AudioStreamPlayer.play()
+
+
+func update_mine_count():
+	mine_count_label.text = "Mines: " + str(mines.size())
+	GameManager.set_max_flags(mines.size())
+
