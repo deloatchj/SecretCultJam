@@ -7,6 +7,7 @@ var evil_cursor = load("res://cursors/evil_cursor.svg")
 
 func _ready():
 	detect(evil)
+	GameManager.current_flags = 0
 	
 func detect(evilstate):
 	if evilstate == false:
@@ -42,9 +43,9 @@ func _on_back_pressed():
 	lastui.visible = true
 	$Credits.visible = false
 
+
 func _on_credits_pressed():
 	$Credits/Back.theme = lastui.theme
 	$Credits.visible = true
 	$Credits/CreditsBG.texture = lastui.get_node("BG").texture
 	lastui.visible = false
-
