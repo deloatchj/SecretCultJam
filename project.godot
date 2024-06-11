@@ -10,11 +10,13 @@ config_version=5
 
 [application]
 
-config/name="SecretCultJam"
+config/name="Cutesweeper"
 run/main_scene="res://scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.2")
 boot_splash/image="res://art/splashscreen/splatter.png"
-config/icon="res://icon.svg"
+config/icon="res://art/Minesweeper/tileflag.png"
+config/macos_native_icon="res://icon.icns"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
