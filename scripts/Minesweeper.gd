@@ -184,6 +184,7 @@ func _on_mine_clicked():
 			elif cell.mine_count > 0:
 				cell.texture_rect.texture = cell.match_tile_texture(cell.mine_count)
 	GameManager.recentflag = true
+	GameManager.game_over = true
 
 func reveal_adjacent_cells(x, y):
 	for dx in range(-1, 2):
