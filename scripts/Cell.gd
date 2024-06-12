@@ -76,20 +76,23 @@ func _update_texture():
 		texture_rect.texture = texture_tile0
 
 func _gui_input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_RIGHT && event.pressed:
-			if is_flagged:
-				# Remove the flag if already flagged
-				texture_rect.texture = texture_tile0
-				is_flagged = false
-				GameManager.remove_flag()
-			else:
-				# Place the flag
-				if GameManager.can_place_flag():
-					texture_rect.texture = texture_flag
-					is_flagged = true
-					GameManager.place_flag()
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+		if GameManager.game_over:
 			return
+		if disabled:
+			return
+		if is_flagged:
+			# Remove the flag if already flagged
+			texture_rect.texture = texture_tile0
+			is_flagged = false
+			GameManager.remove_flag()
+		else:
+			# Place the flag
+			if GameManager.can_place_flag():
+				texture_rect.texture = texture_flag
+				is_flagged = true
+				GameManager.place_flag()
+		return
 
 func _input(event):
 	if event is InputEventKey && event.pressed:

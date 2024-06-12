@@ -9,6 +9,7 @@ var winstate : bool = false
 
 var max_flags = 10
 var current_flags = 0
+var game_over = false
 
 func _ready():
 	pass
@@ -28,6 +29,8 @@ func can_place_flag() -> bool:
 	return current_flags < max_flags
 
 func place_flag():
+	if game_over:
+		return 
 	if can_place_flag():
 		current_flags += 1
 

@@ -4,6 +4,7 @@ var losestate = GameManager.minesweeperlosecounter
 var recentlose = GameManager.recentflag
 
 func _physics_process(_delta):
+	GameManager.game_over = false
 	if Input.is_action_just_pressed("one"):
 		$AnimationPlayer.play("fulltoone")
 	if Input.is_action_just_pressed("two"):
