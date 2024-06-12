@@ -1726,9 +1726,12 @@ texture = ExtResource("2_e6lfs")
 [node name="TextureRect" type="TextureRect" parent="."]
 self_modulate = Color(1, 1, 1, 0.298039)
 texture_filter = 1
-layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("16_my7ju")
 
 [node name="SacrificeSigil" type="Sprite2D" parent="."]
