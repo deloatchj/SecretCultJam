@@ -10,6 +10,7 @@ var kawaii_cursor = load("res://cursors/kawaii_cursor.svg")
 var kawaii_theme = load("res://art/themes/kawaii.tres")
 var evil_cursor = load("res://cursors/evil_cursor.svg")
 var evil_theme = load("res://art/themes/evil.tres")
+var revealed_cells = 0
 
 var grid = []
 @onready var mines = []
@@ -68,13 +69,9 @@ func _physics_process(_delta):
 			get_tree().change_scene_to_file("res://scenes/postgame.tscn")
 
 func check_win_condition() -> bool:
-	var revealed_non_mine_cells = 0
-	for x in range(GRID_SIZE):
-		for y in range(GRID_SIZE):
-			var cell = grid[x][y]
-			if cell.disabled and not cell.is_mine:
-				revealed_non_mine_cells += 1
-	if revealed_non_mine_cells == GRID_SIZE * GRID_SIZE - NUM_MINES:
+	var remaining_cells = (GRID_SIZE * GRID_SIZE) - revealed_cells
+	var remaining_cells_minus_mines = remaining_cells - mines.size()
+	if remaining_cells_minus_mines == 0:
 		return true
 	return false
 
@@ -173,6 +170,7 @@ func clear_mines():
 	mines.clear()
 
 func _on_cell_revealed(cell, x, y):
+	revealed_cells += 1  # Increment the count of revealed cells
 	if cell.mine_count == 0:
 		reveal_adjacent_cells(x, y)
 
@@ -201,11 +199,8 @@ func _on_audio_stream_player_finished():
 	await get_tree().create_timer(randi_range(1, 3)).timeout
 	$AudioStreamPlayer.play()
 
-
 func update_mine_count():
 	GameManager.set_max_flags(mines.size())
-
-
 
 func _on_resume_pressed():
 	$PauseMenu.visible = false
