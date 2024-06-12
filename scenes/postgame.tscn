@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://d3e6muthdbkti"]
+[gd_scene load_steps=48 format=3 uid="uid://d3e6muthdbkti"]
 
 [ext_resource type="Script" path="res://scripts/postgame.gd" id="1_16gg2"]
 [ext_resource type="Texture2D" uid="uid://dhfcihu55job7" path="res://art/wood.jpg" id="2_e6lfs"]
@@ -32,6 +32,7 @@
 [ext_resource type="AudioStream" uid="uid://db3ufdsekxdhd" path="res://sounds/scream_no_1.mp3" id="22_1oxhy"]
 [ext_resource type="AudioStream" uid="uid://d4jl03glx1gl" path="res://sounds/grunt_1.mp3" id="22_vw07c"]
 [ext_resource type="AudioStream" uid="uid://natn3dh5ap2x" path="res://sounds/scream_argh_1.mp3" id="23_jrqtx"]
+[ext_resource type="AudioStream" uid="uid://13xdq4c5gcd" path="res://sounds/hearbeat.mp3" id="26_6gf1q"]
 
 [sub_resource type="Animation" id="Animation_5ec76"]
 length = 0.001
@@ -1027,6 +1028,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SawAudio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 8.53,
+"start_offset": 0.0,
+"stream": ExtResource("17_yuwp6")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_glfwf"]
 resource_name = "preserve_four"
@@ -1079,6 +1095,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SawAudio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 8.53,
+"start_offset": 0.0,
+"stream": ExtResource("17_yuwp6")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_g7jvd"]
 resource_name = "preserve_full"
@@ -1131,6 +1162,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SawAudio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 8.53,
+"start_offset": 0.0,
+"stream": ExtResource("17_yuwp6")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_3vrhw"]
 resource_name = "preserve_one"
@@ -1183,6 +1229,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SawAudio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 8.53,
+"start_offset": 0.0,
+"stream": ExtResource("17_yuwp6")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_cmxk0"]
 resource_name = "preserve_three"
@@ -1235,6 +1296,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SawAudio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 8.53,
+"start_offset": 0.0,
+"stream": ExtResource("17_yuwp6")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_n5613"]
 resource_name = "preserve_two"
@@ -1287,6 +1363,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SawAudio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 8.53,
+"start_offset": 0.0,
+"stream": ExtResource("17_yuwp6")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_0rvbs"]
 resource_name = "threetofour"
@@ -1797,6 +1888,11 @@ grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("21_nstte")
 text = "CONTINUE . . ."
+
+[node name="HeartBeat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_6gf1q")
+volume_db = 5.0
+autoplay = true
 
 [connection signal="pressed" from="Back" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]

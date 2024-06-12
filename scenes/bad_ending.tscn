@@ -1,6 +1,50 @@
-[gd_scene load_steps=2 format=3 uid="uid://ctqbhdd1fv5pg"]
+[gd_scene load_steps=12 format=3 uid="uid://ctqbhdd1fv5pg"]
 
+[ext_resource type="Script" path="res://scripts/bad_ending.gd" id="1_1k4n5"]
 [ext_resource type="Texture2D" uid="uid://cktj5nbqnk5yc" path="res://art/player_pixelated.png" id="1_kmlrc"]
+[ext_resource type="Shader" path="res://art/shaders/bad_ending.gdshader" id="2_osidd"]
+[ext_resource type="AudioStream" uid="uid://cqw5cridkovda" path="res://sounds/siren.mp3" id="3_dllbk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_se3td"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ubg8m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m65lj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_htrnq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eb83f"]
+
+[sub_resource type="Theme" id="Theme_4l5uc"]
+Button/styles/disabled = SubResource("StyleBoxEmpty_se3td")
+Button/styles/focus = SubResource("StyleBoxEmpty_ubg8m")
+Button/styles/hover = SubResource("StyleBoxEmpty_m65lj")
+Button/styles/normal = SubResource("StyleBoxEmpty_htrnq")
+Button/styles/pressed = SubResource("StyleBoxEmpty_eb83f")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ft2ri"]
+shader = ExtResource("2_osidd")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.025
+shader_parameter/scanlines_width = 0.019
+shader_parameter/grille_opacity = 0.3
+shader_parameter/resolution = Vector2(640, 480)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 0.0
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.4
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.233
+shader_parameter/aberration = 0.00700005
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = true
+shader_parameter/warp_amount = 0.537
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
 
 [node name="BadEnding" type="Control"]
 layout_mode = 3
@@ -9,6 +53,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_1k4n5")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -34,3 +79,58 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_kmlrc")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -627.0
+offset_top = 76.0
+offset_right = 621.0
+offset_bottom = 430.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 34
+bbcode_enabled = true
+text = "[color=white][b]Magna, UT[/b] Leading researcher Dr. Bryan Anderson was found dead at his house, witnesses and police officers at the scene of crime said they found the house covered in inscriptions, pagan idols and a number of sacrificial altars, the leading cause of death has been identified as a gruesome ritual suicide.
+
+The beloved professor is survived by his friends,colleagues and students at the Hawklong University, and a memorial/funeral has been arranged on the upcoming Tuesday.[/color]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -381.0
+offset_top = -262.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = SubResource("Theme_4l5uc")
+theme_override_font_sizes/font_size = 86
+text = "BACK"
+flat = true
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ft2ri")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_dllbk")
+autoplay = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -4,11 +4,12 @@ const GRID_SIZE = 6
 const NUM_MINES = 10
 
 @onready var grid_container = $GridContainer
-@onready var mine_count_label = $MineCountLabel
 
 var evil = GameManager.evil
 var kawaii_cursor = load("res://cursors/kawaii_cursor.svg")
+var kawaii_theme = load("res://art/themes/kawaii.tres")
 var evil_cursor = load("res://cursors/evil_cursor.svg")
+var evil_theme = load("res://art/themes/evil.tres")
 
 var grid = []
 @onready var mines = []
@@ -24,9 +25,13 @@ func _ready():
 	if evil == false:
 		Input.set_custom_mouse_cursor(kawaii_cursor)
 		$Wood.modulate = Color("6b005b")
+		$PauseMenu.theme = kawaii_theme
+		$bloodwood.visible = false
 	elif evil == true:
 		Input.set_custom_mouse_cursor(evil_cursor)
 		$Wood.modulate = Color("3d3d3d")
+		$PauseMenu.theme = evil_theme
+		$bloodwood.visible = true
 
 	if GameManager.minesweeperlosecounter == 0:
 		%Handfull.visible = true
@@ -46,9 +51,10 @@ func _ready():
 		%Hand5.visible = true
 		%Splatter5.visible = true
 	
-
-		
 func _physics_process(_delta):
+	if Input.is_action_just_pressed("escape"):
+		$PauseMenu.visible = true
+	
 	if GameManager.recentflag == true:
 		if Input.is_action_just_pressed("leftclick"):
 			GameManager.minesweeperlosecounter += 1
@@ -56,8 +62,10 @@ func _physics_process(_delta):
 
 	# Check for win condition
 	if check_win_condition():
-		GameManager.minesweeperwincounter += 1
-		get_tree().change_scene_to_file("res://scenes/postgame.tscn")
+		GameManager.recentflag = false
+		if Input.is_action_just_pressed("leftclick"):
+			GameManager.minesweeperwincounter += 1
+			get_tree().change_scene_to_file("res://scenes/postgame.tscn")
 
 func check_win_condition() -> bool:
 	var revealed_non_mine_cells = 0
@@ -195,6 +203,12 @@ func _on_audio_stream_player_finished():
 
 
 func update_mine_count():
-	mine_count_label.text = "Mines: " + str(mines.size())
 	GameManager.set_max_flags(mines.size())
 
+
+
+func _on_resume_pressed():
+	$PauseMenu.visible = false
+
+func _on_quit_pressed():
+	get_tree().quit()

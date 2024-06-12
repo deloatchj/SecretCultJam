@@ -1,4 +1,19 @@
-[gd_scene format=3 uid="uid://6s87hgjehd2p"]
+[gd_scene load_steps=7 format=3 uid="uid://6s87hgjehd2p"]
+
+[ext_resource type="Shader" path="res://art/shaders/kawaiimenu.gdshader" id="1_5pina"]
+[ext_resource type="Script" path="res://scripts/good_ending.gd" id="1_kjm2u"]
+[ext_resource type="Texture2D" uid="uid://dfk0kw6ph2d1g" path="res://art/kawaiibg.png" id="2_l6cip"]
+[ext_resource type="AudioStream" uid="uid://ds5h4xkheerpa" path="res://music/KawaiiMainMenu.mp3" id="3_qlgd2"]
+[ext_resource type="Theme" uid="uid://ds7omknh44wa" path="res://art/themes/kawaii.tres" id="4_vlx4b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lqcro"]
+shader = ExtResource("1_5pina")
+shader_parameter/scroll_speed = 0.047
+shader_parameter/angle_degrees = 45.0
+shader_parameter/repeat_x = 1.0
+shader_parameter/repeat_y = 1.0
+shader_parameter/row_offset = 0.19
+shader_parameter/texture_to_scroll = ExtResource("2_l6cip")
 
 [node name="Good_ending" type="Control"]
 layout_mode = 3
@@ -7,3 +22,67 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_kjm2u")
+
+[node name="BG" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_lqcro")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_l6cip")
+
+[node name="KawaiiAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_qlgd2")
+volume_db = -10.0
+autoplay = true
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.501961)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_vlx4b")
+theme_override_font_sizes/font_size = 91
+text = "What a lovely evening,just playing 
+le old game of minesweeper, with 
+absolutely no creepy,painful or 
+irreversible consequences, until
+ the next ritual, that is..."
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -394.0
+offset_top = -165.0
+offset_right = -17.0
+offset_bottom = -22.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("4_vlx4b")
+text = "BACK"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
