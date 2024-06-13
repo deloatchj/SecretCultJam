@@ -28,11 +28,6 @@ func detect(evilstate):
 		$KawaiiMenu.visible = false
 		$KawaiiAudio.stop()
 
-func _unhandled_input(_event):
-	if Input.is_action_just_pressed("toggle"):
-		evil = !evil
-	detect(evil)
-
 func _on_quit_pressed():
 	get_tree().quit()
 

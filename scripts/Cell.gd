@@ -76,7 +76,7 @@ func _update_texture():
 		texture_rect.texture = texture_tile0
 
 func _gui_input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+	if event.is_action_pressed("rightclick"):
 		if GameManager.game_over:
 			return
 		if disabled:
@@ -93,12 +93,5 @@ func _gui_input(event):
 				is_flagged = true
 				GameManager.place_flag()
 		return
+		
 
-func _input(event):
-	if event is InputEventKey && event.pressed:
-		if event.keycode == KEY_R:
-			reset_game()
-
-func reset_game():
-	print("Resetting the game...")
-	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")

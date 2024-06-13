@@ -64,9 +64,15 @@ func _physics_process(_delta):
 	# Check for win condition
 	if check_win_condition():
 		GameManager.recentflag = false
+		GameManager.minesweeperwincounter += 1
 		if Input.is_action_just_pressed("leftclick"):
-			GameManager.minesweeperwincounter += 1
-			get_tree().change_scene_to_file("res://scenes/good_ending.tscn")
+			if GameManager.minesweeperwincounter > 4:
+				get_tree().change_scene_to_file("res://scenes/good_ending.tscn")
+			else:
+				get_tree().change_scene_to_file("res://scenes/postgame.tscn")
+				
+	if Input.is_action_just_pressed("toggle"):
+		get_tree().reload_current_scene()
 
 func check_win_condition() -> bool:
 	var remaining_cells = (GRID_SIZE * GRID_SIZE) - revealed_cells
