@@ -49,3 +49,13 @@ func _on_credits_pressed():
 	$Credits.visible = true
 	$Credits/CreditsBG.texture = lastui.get_node("BG").texture
 	lastui.visible = false
+	
+func _on_settings_pressed():
+	$Settings/Back.theme = lastui.theme
+	$Settings.visible = true
+	$Settings/SettingsBG.texture = lastui.get_node("BG").texture
+	lastui.visible = false
+
+func _on_settings_back_pressed():
+	lastui.visible = true
+	$Settings.visible = false
