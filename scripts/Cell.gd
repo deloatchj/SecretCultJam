@@ -15,6 +15,7 @@ var texture_tile3
 var texture_tile4
 var texture_tile5
 var texture_flag 
+var texture_tilenone
 
 @onready var texture_rect = $TextureRect
 
@@ -27,6 +28,7 @@ func _ready():
 	texture_tile4 = preload("res://art/Minesweeper/tile4.png")
 	texture_tile5 = preload("res://art/Minesweeper/tile5.png")
 	texture_flag = preload("res://art/Minesweeper/tileflag.png")
+	texture_tilenone = preload("res://art/Minesweeper/tilenone.png")
 
 	connect("pressed", Callable(self, "_on_pressed"))
 	_update_texture()
@@ -57,6 +59,8 @@ func _on_pressed():
 
 func match_tile_texture(count):
 	match count:
+		0:
+			return texture_tilenone
 		1:
 			return texture_tile1
 		2:
