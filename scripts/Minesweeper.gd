@@ -1,7 +1,7 @@
 extends Control
 
 const GRID_SIZE = 6
-const NUM_MINES = 10
+const NUM_MINES = 8
 
 @onready var grid_container = $GridContainer
 
@@ -19,7 +19,6 @@ var grid = []
 func _ready():
 	initialize_grid()
 	place_mines()
-	ensure_min_surrounding_mines()
 	update_cell_counts()
 	check_and_reshuffle()
 	update_mine_count()
@@ -107,22 +106,16 @@ func can_place_mine(x, y):
 		for dy in range(-1, 2):
 			var nx = x + dx
 			var ny = y + dy
-			if nx >= 0 and ny >= 0 and nx < GRID_SIZE and ny < GRID_SIZE and count_surrounding_mines(nx, ny) >= 5:
+			if nx >= 0 and ny >= 0 and nx < GRID_SIZE and ny < GRID_SIZE and count_surrounding_mines(nx, ny) >= 3:
 				return false
 	return true
-
-func ensure_min_surrounding_mines():
-	for x in range(GRID_SIZE):
-		for y in range(GRID_SIZE):
-			if not grid[x][y].is_mine and count_surrounding_mines(x, y) == 0:
-				place_adjacent_mine(x, y)
 
 func place_adjacent_mine(x, y):
 	for dx in range(-1, 2):
 		for dy in range(-1, 2):
 			var nx = x + dx
 			var ny = y + dy
-			if nx >= 0 and ny >= 0 and nx < GRID_SIZE and ny < GRID_SIZE and not grid[nx][ny].is_mine and count_surrounding_mines(nx, ny) < 5:
+			if nx >= 0 and ny >= 0 and nx < GRID_SIZE and ny < GRID_SIZE and not grid[nx][ny].is_mine and count_surrounding_mines(nx, ny) < 3:
 				grid[nx][ny].set_mine(true)
 				mines.append(Vector2(nx, ny))
 				return
@@ -155,7 +148,7 @@ func check_and_reshuffle():
 		var reshuffle_needed = false
 		for x in range(GRID_SIZE):
 			for y in range(GRID_SIZE):
-				if count_surrounding_mines(x, y) > 5:
+				if count_surrounding_mines(x, y) > 3:
 					reshuffle_needed = true
 					break
 			if reshuffle_needed:
@@ -163,7 +156,6 @@ func check_and_reshuffle():
 		if reshuffle_needed:
 			clear_mines()
 			place_mines()
-			ensure_min_surrounding_mines()
 			update_cell_counts()
 		else:
 			break
@@ -196,7 +188,7 @@ func reveal_adjacent_cells(x, y):
 		for dy in range(-1, 2):
 			var nx = x + dx
 			var ny = y + dy
-			if nx >= 0 and ny >= 0 and nx < GRID_SIZE:
+			if nx >= 0 and ny >= 0 and nx < GRID_SIZE and ny < GRID_SIZE and (dx != 0 or dy != 0):
 				var cell = grid[nx][ny]
 				if not cell.disabled and not cell.is_mine:
 					cell._on_pressed()
