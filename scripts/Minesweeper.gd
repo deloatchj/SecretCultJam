@@ -11,6 +11,7 @@ var kawaii_theme = load("res://art/themes/kawaii.tres")
 var evil_cursor = load("res://cursors/evil_cursor.svg")
 var evil_theme = load("res://art/themes/evil.tres")
 var revealed_cells = 0
+var flagmode = false
 
 var grid = []
 @onready var mines = []
@@ -71,8 +72,6 @@ func _physics_process(_delta):
 			else:
 				get_tree().change_scene_to_file("res://scenes/postgame.tscn")
 				
-	if Input.is_action_just_pressed("toggle"):
-		get_tree().reload_current_scene()
 
 func check_win_condition() -> bool:
 	var remaining_cells = (GRID_SIZE * GRID_SIZE) - revealed_cells
@@ -208,9 +207,14 @@ func _on_audio_stream_player_finished():
 
 func update_mine_count():
 	GameManager.set_max_flags(mines.size())
+	$Counter/Label.text = str(mines.size())
 
 func _on_resume_pressed():
 	$PauseMenu.visible = false
 
 func _on_quit_pressed():
 	get_tree().quit()
+
+
+func _on_flagger_pressed():
+	flagmode = !flagmode

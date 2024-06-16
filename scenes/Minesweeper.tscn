@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://b2briikrcngb6"]
+[gd_scene load_steps=32 format=3 uid="uid://b2briikrcngb6"]
 
 [ext_resource type="Texture2D" uid="uid://qx3nw27kln5y" path="res://art/splatter5.png" id="1_ijiu2"]
 [ext_resource type="Script" path="res://scripts/Minesweeper.gd" id="1_pbxi1"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://bqo6biv30akmq" path="res://art/themes/blood_vignette.png" id="3_8qq52"]
 [ext_resource type="Texture2D" uid="uid://cx21p51q3ra4r" path="res://art/splatter3.png" id="3_gm5r4"]
 [ext_resource type="Texture2D" uid="uid://8vppnyqm2dxx" path="res://art/splatter2.png" id="4_m12wk"]
+[ext_resource type="Texture2D" uid="uid://du3v4s6wmrjm5" path="res://art/MineCounter.png" id="4_y30au"]
+[ext_resource type="Theme" uid="uid://ds7omknh44wa" path="res://art/themes/kawaii.tres" id="5_1vg38"]
 [ext_resource type="Texture2D" uid="uid://bw3iwtu0hnnqo" path="res://art/splatter1.png" id="5_5jfi3"]
 [ext_resource type="Texture2D" uid="uid://dben3y51jmhk7" path="res://art/hand5.png" id="6_lbath"]
 [ext_resource type="Texture2D" uid="uid://d1lkvisls0apo" path="res://art/hand4.png" id="7_1hsda"]
@@ -22,6 +24,23 @@
 [ext_resource type="AudioStream" uid="uid://bk6hmtoh1uar4" path="res://sounds/clcik_7.sfxr" id="19_6x35v"]
 [ext_resource type="AudioStream" uid="uid://b4piend5wxmi0" path="res://sounds/clcik_8.sfxr" id="20_sct44"]
 [ext_resource type="AudioStream" uid="uid://b52jmeg1i2x7y" path="res://sounds/clcik_9.sfxr" id="21_8h0gd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4gk3h"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jcf3u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_te6dg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0nsrm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eh7d8"]
+
+[sub_resource type="Theme" id="Theme_7tpwd"]
+Button/styles/disabled = SubResource("StyleBoxEmpty_4gk3h")
+Button/styles/focus = SubResource("StyleBoxEmpty_jcf3u")
+Button/styles/hover = SubResource("StyleBoxEmpty_te6dg")
+Button/styles/normal = SubResource("StyleBoxEmpty_0nsrm")
+Button/styles/pressed = SubResource("StyleBoxEmpty_eh7d8")
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1m131"]
 playback_mode = 1
@@ -74,6 +93,36 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_8qq52")
+
+[node name="Counter" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(1065, 300)
+rotation = -0.453786
+scale = Vector2(1.75, 1.75)
+texture = ExtResource("4_y30au")
+
+[node name="Label" type="Label" parent="Counter"]
+offset_left = -34.6
+offset_top = -35.9487
+offset_right = 33.4
+offset_bottom = 29.0513
+theme = ExtResource("5_1vg38")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 70
+text = "14"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Flagger" type="Button" parent="Counter"]
+unique_name_in_owner = true
+offset_left = -52.1631
+offset_top = -54.6872
+offset_right = 47.8369
+offset_bottom = 45.3128
+rotation = 0.453786
+pivot_offset = Vector2(50, 50)
+theme = SubResource("Theme_7tpwd")
 
 [node name="Blood" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -201,6 +250,7 @@ text = "RESUME"
 layout_mode = 2
 text = "QUIT"
 
+[connection signal="pressed" from="Counter/Flagger" to="." method="_on_flagger_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
