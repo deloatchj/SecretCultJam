@@ -80,7 +80,7 @@ func _update_texture():
 		texture_rect.texture = texture_tile0
 
 func _gui_input(event):
-	if event.is_action_pressed("rightclick") or get_parent().get_parent().flagmode:
+	if event.is_action_pressed("rightclick") or (get_parent().get_parent().flagmode and event.is_action_pressed("leftclick")):
 		if GameManager.game_over:
 			return
 		if disabled:

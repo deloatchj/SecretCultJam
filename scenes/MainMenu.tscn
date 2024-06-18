@@ -437,10 +437,10 @@ theme_override_font_sizes/font_size = 91
 text = "Minesweeper is a game where some squares hide mines. Safe squares show numbers that tell you how many mines are next to them, including diagonally, horizontally, and vertically. Use these numbers to figure out where the mines are and open all the safe squares to win. But if you click on a mine, you lose.
 
 Instructions:
+Left click to open a safe square.
+Right click to mark a square as unsafe.
 
-Use left click to open a safe square.
-
-Use right click to mark a square as unsafe."
+Mobile players can click on the heart to set the flag mode/open mode."
 autowrap_mode = 2
 
 [node name="Tilebomb" type="Sprite2D" parent="Settings"]
