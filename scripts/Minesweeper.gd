@@ -19,6 +19,7 @@ var flagmode = false
 
 var grid = []
 @onready var mines = []
+var first_click = true
 
 func _ready():
 	NUM_MINES = randi_range(5, 8)
@@ -174,10 +175,18 @@ func clear_mines():
 	mines.clear()
 
 func _on_cell_revealed(cell, x, y):
+	if first_click:
+		if grid[x][y].is_mine:
+			clear_mines()
+			place_mines()
+			update_cell_counts()
+		first_click = false
+
+	
 	revealed_cells += 1  # Increment the count of revealed cells
 	if cell.mine_count == 0:
 		reveal_adjacent_cells(x, y)
-	
+
 	# Check for win condition
 	if check_win_condition():
 		show_win_banner()
@@ -225,11 +234,13 @@ func _on_flagger_pressed():
 func show_win_banner():
 	$Darkener.visible =true
 	win_banner.visible = true
+	first_click = true
 
 func show_loss_banner():
 	$LossBanner.theme = evil_theme
 	$Darkener.visible = true
 	loss_banner.visible = true
+	first_click = true
 
 func drip_here():
 	var mpos = get_global_mouse_position()
