@@ -1,8 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://cjy6e0svasxph"]
+[gd_scene load_steps=16 format=3 uid="uid://cjy6e0svasxph"]
 
 [ext_resource type="Script" path="res://scripts/Cell.gd" id="1_ckdnl"]
+[ext_resource type="Texture2D" uid="uid://dq20m3w8kk8kr" path="res://art/Minesweeper/tilemorebloody.png" id="2_hf84o"]
 [ext_resource type="Texture2D" uid="uid://bp266b4xy2deb" path="res://art/Minesweeper/tilemore2.png" id="2_w5hox"]
 [ext_resource type="Texture2D" uid="uid://lsqqnk1b30ag" path="res://art/Minesweeper/tilemore3.png" id="3_2txow"]
+[ext_resource type="Texture2D" uid="uid://bpmpkrec5adja" path="res://art/Minesweeper/tilemore5bloody.png" id="3_63qrf"]
+[ext_resource type="Texture2D" uid="uid://blq1eyuoooiye" path="res://art/Minesweeper/tilemore4bloody.png" id="4_8qch2"]
 [ext_resource type="Texture2D" uid="uid://ctm6pvv3okdp1" path="res://art/Minesweeper/tilemore4.png" id="4_shteo"]
 [ext_resource type="Texture2D" uid="uid://dp2xhy6a1wtl4" path="res://art/Minesweeper/tilemore.png" id="5_cb7j2"]
 [ext_resource type="Texture2D" uid="uid://jpfb7oda1baf" path="res://art/Minesweeper/tilemore5.png" id="6_0vkk4"]
@@ -30,7 +33,7 @@ offset_right = 128.0
 offset_bottom = 128.0
 theme = SubResource("Theme_5g4du")
 script = ExtResource("1_ckdnl")
-unrevealedtiles = Array[CompressedTexture2D]([ExtResource("2_w5hox"), ExtResource("3_2txow"), ExtResource("4_shteo"), ExtResource("5_cb7j2"), ExtResource("6_0vkk4")])
+unrevealedtiles = Array[CompressedTexture2D]([ExtResource("2_hf84o"), ExtResource("3_63qrf"), ExtResource("4_8qch2"), ExtResource("2_w5hox"), ExtResource("3_2txow"), ExtResource("4_shteo"), ExtResource("5_cb7j2"), ExtResource("6_0vkk4")])
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_filter = 1
