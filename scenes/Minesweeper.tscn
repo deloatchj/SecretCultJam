@@ -1,10 +1,12 @@
-[gd_scene load_steps=32 format=3 uid="uid://b2briikrcngb6"]
+[gd_scene load_steps=34 format=3 uid="uid://b2briikrcngb6"]
 
 [ext_resource type="Texture2D" uid="uid://qx3nw27kln5y" path="res://art/splatter5.png" id="1_ijiu2"]
 [ext_resource type="Script" path="res://scripts/Minesweeper.gd" id="1_pbxi1"]
 [ext_resource type="Texture2D" uid="uid://gj4uhpsh4v3y" path="res://art/splatter4.png" id="2_lcfpr"]
+[ext_resource type="Texture2D" uid="uid://ny6q17io3kja" path="res://art/Minesweeper/bloodsplatterdecal1.png" id="2_ogywb"]
 [ext_resource type="Texture2D" uid="uid://dhfcihu55job7" path="res://art/wood.jpg" id="2_tdjhu"]
 [ext_resource type="Texture2D" uid="uid://bqo6biv30akmq" path="res://art/themes/blood_vignette.png" id="3_8qq52"]
+[ext_resource type="Texture2D" uid="uid://dgp7hqlhmx4id" path="res://art/Minesweeper/bloodsplatterdecal2.png" id="3_57vic"]
 [ext_resource type="Texture2D" uid="uid://cx21p51q3ra4r" path="res://art/splatter3.png" id="3_gm5r4"]
 [ext_resource type="Texture2D" uid="uid://8vppnyqm2dxx" path="res://art/splatter2.png" id="4_m12wk"]
 [ext_resource type="Texture2D" uid="uid://du3v4s6wmrjm5" path="res://art/MineCounter.png" id="4_y30au"]
@@ -72,6 +74,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_pbxi1")
+blooddrips = Array[CompressedTexture2D]([ExtResource("2_ogywb"), ExtResource("3_57vic")])
 
 [node name="Wood" type="TextureRect" parent="."]
 modulate = Color(0.419608, 0, 0.356863, 1)
@@ -84,6 +87,7 @@ grow_vertical = 2
 texture = ExtResource("2_tdjhu")
 
 [node name="bloodwood" type="TextureRect" parent="."]
+visible = false
 self_modulate = Color(1, 1, 1, 0.298039)
 texture_filter = 1
 layout_mode = 1
@@ -102,15 +106,15 @@ scale = Vector2(1.75, 1.75)
 texture = ExtResource("4_y30au")
 
 [node name="Label" type="Label" parent="Counter"]
-offset_left = -34.6
-offset_top = -35.9487
-offset_right = 33.4
-offset_bottom = 29.0513
+offset_left = -32.9961
+offset_top = -28.8088
+offset_right = 35.0039
+offset_bottom = 36.1912
 theme = ExtResource("5_1vg38")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 70
-text = "14"
+text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -230,6 +234,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.145098)
+
 [node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
 layout_mode = 1
 anchors_preset = 15
@@ -239,7 +252,8 @@ offset_left = 681.0
 offset_right = -681.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 40
+theme = ExtResource("5_1vg38")
+theme_override_constants/separation = 80
 alignment = 1
 
 [node name="Resume" type="Button" parent="PauseMenu/VBoxContainer"]
@@ -250,39 +264,61 @@ text = "RESUME"
 layout_mode = 2
 text = "QUIT"
 
+[node name="Darkener" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.372549)
+
 [node name="WinBanner" type="Label" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -1135.0
-offset_top = 350.0
-offset_right = 284.0
-offset_bottom = 777.0
+anchor_bottom = 0.5
+offset_left = -709.5
+offset_top = -213.5
+offset_right = 709.5
+offset_bottom = 213.5
 grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("5_1vg38")
-text = "You Win!"
+theme_override_font_sizes/font_size = 300
+text = "YOU WIN!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="LossBanner" type="Label" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -1135.0
-offset_top = 350.0
-offset_right = 284.0
-offset_bottom = 777.0
+anchor_bottom = 0.5
+offset_left = -869.0
+offset_top = -238.0
+offset_right = 869.0
+offset_bottom = 237.0
 grow_horizontal = 2
+grow_vertical = 2
 theme = ExtResource("5_1vg38")
-text = "You Lose!"
+theme_override_font_sizes/font_size = 300
+text = "YOU LOSE!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="dripTimer" type="Timer" parent="."]
+unique_name_in_owner = true
 
 [connection signal="pressed" from="Counter/Flagger" to="." method="_on_flagger_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="timeout" from="dripTimer" to="." method="_on_drip_timer_timeout"]

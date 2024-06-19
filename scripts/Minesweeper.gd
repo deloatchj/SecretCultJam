@@ -7,6 +7,8 @@ var NUM_MINES = 8
 @onready var win_banner = $WinBanner
 @onready var loss_banner = $LossBanner
 
+@export var blooddrips : Array[CompressedTexture2D]
+
 var evil = GameManager.evil
 var kawaii_cursor = load("res://cursors/kawaii_cursor.svg")
 var kawaii_theme = load("res://art/themes/kawaii.tres")
@@ -33,6 +35,7 @@ func _ready():
 		$bloodwood.visible = false
 	elif evil == true:
 		Input.set_custom_mouse_cursor(evil_cursor)
+		drip_here()
 		$Wood.modulate = Color("3d3d3d")
 		$PauseMenu.theme = evil_theme
 		$bloodwood.visible = true
@@ -216,18 +219,33 @@ func _on_resume_pressed():
 func _on_quit_pressed():
 	get_tree().quit()
 
-
 func _on_flagger_pressed():
 	flagmode = !flagmode
 
 func show_win_banner():
+	$Darkener.visible =true
 	win_banner.visible = true
-	await get_tree().create_timer(3.0).timeout
-	win_banner.visible = false
-	
 
 func show_loss_banner():
+	$LossBanner.theme = evil_theme
+	$Darkener.visible = true
 	loss_banner.visible = true
-	await get_tree().create_timer(3.0).timeout
-	loss_banner.visible = false
 
+func drip_here():
+	var mpos = get_global_mouse_position()
+	var unit = TextureRect.new()
+	unit.texture = blooddrips.pick_random()
+	unit.scale.x = randf_range(2.0,3.0)
+	unit.scale.y = unit.scale.x
+	unit.position = mpos
+	unit.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	unit.modulate.a = randf_range(0.5,0.8)
+	unit.modulate.darkened(0.7)
+	unit.rotation_degrees = randi_range(0,180)
+	add_child(unit)
+	%dripTimer.wait_time = randi_range(2,5)
+	%dripTimer.start()
+
+
+func _on_drip_timer_timeout():
+	drip_here()

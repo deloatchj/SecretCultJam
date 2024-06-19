@@ -7,8 +7,8 @@ var is_mine = false
 var mine_count = 0
 var is_flagged = false
 
+@export var unrevealedtiles : Array[CompressedTexture2D]
 var texture_bomb
-var texture_tile0
 var texture_blob1
 var texture_tile2
 var texture_blob3
@@ -25,7 +25,6 @@ var texture_tile_domino3
 
 func _ready():
 	texture_bomb = preload("res://art/Minesweeper/tilebomb.png")
-	texture_tile0 = preload("res://art/Minesweeper/tile0.png")
 	texture_blob1 = preload("res://art/Minesweeper/tileblob1.png")
 	texture_tile2 = preload("res://art/Minesweeper/tile2.png")
 	texture_blob3 = preload("res://art/Minesweeper/tileblob3.png")
@@ -94,7 +93,9 @@ func reveal_neighbors():
 
 func _update_texture():
 	if !is_mine and mine_count == 0:
-		texture_rect.texture = texture_tile0
+		texture_rect.texture = unrevealedtiles.pick_random()
+		texture_rect.pivot_offset = Vector2(64,64)
+		texture_rect.rotation_degrees = [0,90,180,270,360].pick_random() + randi_range(-10,10)
 
 func _gui_input(event):
 	if event.is_action_pressed("rightclick") or (get_parent().get_parent().flagmode and event.is_action_pressed("leftclick")):
@@ -104,7 +105,7 @@ func _gui_input(event):
 			return
 		if is_flagged:
 			# Remove the flag if already flagged
-			texture_rect.texture = texture_tile0
+			texture_rect.texture = unrevealedtiles.pick_random()
 			is_flagged = false
 			GameManager.remove_flag()
 		else:
