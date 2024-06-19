@@ -39,3 +39,5 @@ unrevealedtiles = Array[CompressedTexture2D]([ExtResource("2_w5hox"), ExtResourc
 texture_filter = 1
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 0
+
+[connection signal="mouse_entered" from="TextureRect" to="." method="_on_texture_rect_mouse_entered"]

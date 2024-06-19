@@ -10,10 +10,12 @@ var NUM_MINES = 8
 @export var blooddrips : Array[CompressedTexture2D]
 
 var evil = GameManager.evil
-var kawaii_cursor = load("res://cursors/kawaii_cursor.svg")
-var kawaii_theme = load("res://art/themes/kawaii.tres")
-var evil_cursor = load("res://cursors/evil_cursor.svg")
-var evil_theme = load("res://art/themes/evil.tres")
+var kawaii_cursor = preload("res://cursors/kawaii_cursor.svg")
+var kawaii_theme = preload("res://art/themes/kawaii.tres")
+var evil_cursor = preload("res://cursors/evil_cursor.svg")
+var evil_theme = preload("res://art/themes/evil.tres")
+var minetile = preload("res://art/Minesweeper/tilebomb.png")
+var nonetile = preload("res://art/Minesweeper/tilenone.png")
 var revealed_cells = 0
 var flagmode = false
 
@@ -22,6 +24,7 @@ var grid = []
 var first_click = true
 
 func _ready():
+	first_click = true
 	NUM_MINES = randi_range(5, 8)
 	initialize_grid()
 	place_mines()
@@ -58,7 +61,7 @@ func _ready():
 	if GameManager.minesweeperlosecounter == 5:
 		%Hand5.visible = true
 		%Splatter5.visible = true
-	
+
 func _physics_process(_delta):
 	if Input.is_action_just_pressed("escape"):
 		$PauseMenu.visible = true
@@ -78,7 +81,6 @@ func _physics_process(_delta):
 				get_tree().change_scene_to_file("res://scenes/good_ending.tscn")
 			else:
 				get_tree().change_scene_to_file("res://scenes/postgame.tscn")
-			
 
 func check_win_condition() -> bool:
 	var remaining_cells = (GRID_SIZE * GRID_SIZE) - revealed_cells
@@ -181,7 +183,6 @@ func _on_cell_revealed(cell, x, y):
 			place_mines()
 			update_cell_counts()
 		first_click = false
-
 	
 	revealed_cells += 1  # Increment the count of revealed cells
 	if cell.mine_count == 0:
@@ -198,7 +199,7 @@ func _on_mine_clicked():
 			var cell = grid[x][y]
 			cell.disabled = true
 			if cell.is_mine:
-				cell.texture_rect.texture = preload("res://art/Minesweeper/tilebomb.png")
+				cell.texture_rect.texture = minetile
 			elif cell.mine_count > 0:
 				cell.texture_rect.texture = cell.match_tile_texture(cell.mine_count)
 	GameManager.recentflag = true
@@ -234,13 +235,11 @@ func _on_flagger_pressed():
 func show_win_banner():
 	$Darkener.visible =true
 	win_banner.visible = true
-	first_click = true
 
 func show_loss_banner():
 	$LossBanner.theme = evil_theme
 	$Darkener.visible = true
 	loss_banner.visible = true
-	first_click = true
 
 func drip_here():
 	var mpos = get_global_mouse_position()
@@ -250,14 +249,12 @@ func drip_here():
 	unit.scale.y = unit.scale.x
 	unit.position = mpos
 	unit.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	unit.modulate.a = randf_range(0.5,0.8)
-	unit.modulate.darkened(0.7)
+	unit.modulate.a = randf_range(0.1,0.5)
 	unit.rotation_degrees = randi_range(0,180)
 	unit.pivot_offset = unit.size/2
 	add_child(unit)
-	%dripTimer.wait_time = randi_range(2,5)
+	%dripTimer.wait_time = randi_range(8,12)
 	%dripTimer.start()
-
 
 func _on_drip_timer_timeout():
 	drip_here()

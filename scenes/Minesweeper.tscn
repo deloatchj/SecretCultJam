@@ -316,6 +316,7 @@ vertical_alignment = 1
 
 [node name="dripTimer" type="Timer" parent="."]
 unique_name_in_owner = true
+wait_time = 5.0
 
 [connection signal="pressed" from="Counter/Flagger" to="." method="_on_flagger_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
