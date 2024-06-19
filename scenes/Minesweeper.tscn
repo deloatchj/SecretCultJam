@@ -250,6 +250,38 @@ text = "RESUME"
 layout_mode = 2
 text = "QUIT"
 
+[node name="WinBanner" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -1135.0
+offset_top = 350.0
+offset_right = 284.0
+offset_bottom = 777.0
+grow_horizontal = 2
+theme = ExtResource("5_1vg38")
+text = "You Win!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LossBanner" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -1135.0
+offset_top = 350.0
+offset_right = 284.0
+offset_bottom = 777.0
+grow_horizontal = 2
+theme = ExtResource("5_1vg38")
+text = "You Lose!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="Counter/Flagger" to="." method="_on_flagger_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Resume" to="." method="_on_resume_pressed"]

@@ -1,9 +1,11 @@
 extends Control
 
 const GRID_SIZE = 6
-const NUM_MINES = 8
+var NUM_MINES = 8
 
 @onready var grid_container = $GridContainer
+@onready var win_banner = $WinBanner
+@onready var loss_banner = $LossBanner
 
 var evil = GameManager.evil
 var kawaii_cursor = load("res://cursors/kawaii_cursor.svg")
@@ -17,6 +19,7 @@ var grid = []
 @onready var mines = []
 
 func _ready():
+	NUM_MINES = randi_range(5, 8)
 	initialize_grid()
 	place_mines()
 	update_cell_counts()
@@ -64,13 +67,14 @@ func _physics_process(_delta):
 	# Check for win condition
 	if check_win_condition():
 		GameManager.recentflag = false
-		GameManager.minesweeperwincounter += 1
+		
 		if Input.is_action_just_pressed("leftclick"):
-			if GameManager.minesweeperwincounter > 4:
+			GameManager.minesweeperwincounter += 1
+			if GameManager.minesweeperwincounter > 2:
 				get_tree().change_scene_to_file("res://scenes/good_ending.tscn")
 			else:
 				get_tree().change_scene_to_file("res://scenes/postgame.tscn")
-				
+			
 
 func check_win_condition() -> bool:
 	var remaining_cells = (GRID_SIZE * GRID_SIZE) - revealed_cells
@@ -170,8 +174,13 @@ func _on_cell_revealed(cell, x, y):
 	revealed_cells += 1  # Increment the count of revealed cells
 	if cell.mine_count == 0:
 		reveal_adjacent_cells(x, y)
+	
+	# Check for win condition
+	if check_win_condition():
+		show_win_banner()
 
 func _on_mine_clicked():
+	show_loss_banner()
 	for x in range(GRID_SIZE):
 		for y in range(GRID_SIZE):
 			var cell = grid[x][y]
@@ -210,3 +219,15 @@ func _on_quit_pressed():
 
 func _on_flagger_pressed():
 	flagmode = !flagmode
+
+func show_win_banner():
+	win_banner.visible = true
+	await get_tree().create_timer(3.0).timeout
+	win_banner.visible = false
+	
+
+func show_loss_banner():
+	loss_banner.visible = true
+	await get_tree().create_timer(3.0).timeout
+	loss_banner.visible = false
+
