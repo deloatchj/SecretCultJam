@@ -253,6 +253,7 @@ func drip_here():
 	unit.modulate.a = randf_range(0.5,0.8)
 	unit.modulate.darkened(0.7)
 	unit.rotation_degrees = randi_range(0,180)
+	unit.pivot_offset = unit.size/2
 	add_child(unit)
 	%dripTimer.wait_time = randi_range(2,5)
 	%dripTimer.start()
