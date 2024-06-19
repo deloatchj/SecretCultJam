@@ -1,7 +1,7 @@
 extends Control
 
 const GRID_SIZE = 6
-const NUM_MINES = 8
+var NUM_MINES = 8
 
 @onready var grid_container = $GridContainer
 
@@ -17,6 +17,7 @@ var grid = []
 @onready var mines = []
 
 func _ready():
+	NUM_MINES = randi_range(5, 8)
 	initialize_grid()
 	place_mines()
 	update_cell_counts()
@@ -64,13 +65,13 @@ func _physics_process(_delta):
 	# Check for win condition
 	if check_win_condition():
 		GameManager.recentflag = false
-		GameManager.minesweeperwincounter += 1
 		if Input.is_action_just_pressed("leftclick"):
-			if GameManager.minesweeperwincounter > 4:
+			GameManager.minesweeperwincounter += 1
+			if GameManager.minesweeperwincounter > 2:
 				get_tree().change_scene_to_file("res://scenes/good_ending.tscn")
 			else:
 				get_tree().change_scene_to_file("res://scenes/postgame.tscn")
-				
+			
 
 func check_win_condition() -> bool:
 	var remaining_cells = (GRID_SIZE * GRID_SIZE) - revealed_cells
