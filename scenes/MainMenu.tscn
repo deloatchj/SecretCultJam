@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dvmp2s2irk4am"]
+[gd_scene load_steps=25 format=3 uid="uid://dvmp2s2irk4am"]
 
 [ext_resource type="Script" path="res://scripts/mainmenu.gd" id="1_bmddf"]
 [ext_resource type="Shader" path="res://art/shaders/kawaiimenu.gdshader" id="2_030e5"]
@@ -12,10 +12,16 @@
 [ext_resource type="Texture2D" uid="uid://dvpp2ee3wa3ne" path="res://art/splashscreen/chak_logo.png" id="9_35llj"]
 [ext_resource type="FontFile" uid="uid://l3ui5sg77m4r" path="res://font/kawaii.ttf" id="9_jp65u"]
 [ext_resource type="Texture2D" uid="uid://dj0c68kij50tx" path="res://art/splashscreen/jerridelo_logo.png" id="11_6yydy"]
-[ext_resource type="Texture2D" uid="uid://fbi6lxp3kb2i" path="res://art/guide/board_instruct.png" id="13_csyk0"]
+[ext_resource type="Texture2D" uid="uid://bp266b4xy2deb" path="res://art/Minesweeper/tilemore2.png" id="13_ghjvr"]
 [ext_resource type="Texture2D" uid="uid://52e8n28wvipm" path="res://art/Minesweeper/tilebomb.png" id="14_t1dsl"]
+[ext_resource type="Texture2D" uid="uid://ct16rx1vkyf6x" path="res://art/Minesweeper/tilegem1.png" id="15_ndmm1"]
 [ext_resource type="Texture2D" uid="uid://carjcmlt2c0d0" path="res://cursors/kawaii_cursor.svg" id="15_tiv10"]
+[ext_resource type="Texture2D" uid="uid://w2d35pact0l7" path="res://art/Minesweeper/tileblob1.png" id="16_5h2tk"]
 [ext_resource type="Texture2D" uid="uid://cnaqw7dgfy0ah" path="res://art/Minesweeper/tileflag.png" id="16_8jdqf"]
+[ext_resource type="Texture2D" uid="uid://cfdcftfmh6ga0" path="res://art/Minesweeper/tilegem2.png" id="17_yr05y"]
+[ext_resource type="Texture2D" uid="uid://crqfyq0wt5cxm" path="res://art/Minesweeper/tiledomino1.png" id="18_netu0"]
+[ext_resource type="Texture2D" uid="uid://dwnjr3v30ab8n" path="res://art/Minesweeper/tileblob3.png" id="19_ghye2"]
+[ext_resource type="Texture2D" uid="uid://cu4752ptg3eib" path="res://art/Minesweeper/tiledomino3.png" id="20_o6637"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1w6ne"]
 shader = ExtResource("2_030e5")
@@ -415,63 +421,55 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="BoardInstruct" type="Sprite2D" parent="Settings"]
-texture_filter = 1
-position = Vector2(220, 216)
-texture = ExtResource("13_csyk0")
-
 [node name="Label" type="Label" parent="Settings"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.562
 anchor_bottom = 0.574
-offset_left = 463.0
-offset_top = -586.96
-offset_right = 2390.0
-offset_bottom = 731.08
+offset_left = 832.0
+offset_top = -606.96
+offset_right = 2282.0
+offset_bottom = 820.08
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.75, 0.75)
 theme = ExtResource("4_pu2g8")
-theme_override_font_sizes/font_size = 91
-text = "Minesweeper is a game where some squares hide mines. Safe squares show numbers that tell you how many mines are next to them, including diagonally, horizontally, and vertically. Use these numbers to figure out where the mines are and open all the safe squares to win. But if you click on a mine, you lose.
+theme_override_font_sizes/font_size = 80
+text = "Minesweeper is a game where some squares hide mines. Safe squares show symbols that represent numbers and tell you how many mines are next to them, including diagonally, horizontally, and vertically. Count the number of symbols on a tile to determine each number.  Use these numbers to figure out where the mines are and open all the safe squares to win. But if you click on a mine, you lose.
 
-Instructions:
 Left click to open a safe square.
 Right click to mark a square as unsafe.
 
-Mobile players can click on the heart to set the flag mode/open mode."
+Mobile players can click on 
+the heart to toggle the 
+flag mode and open mode.
+"
+vertical_alignment = 1
 autowrap_mode = 2
-
-[node name="Tilebomb" type="Sprite2D" parent="Settings"]
-texture_filter = 1
-position = Vector2(220, 500)
-scale = Vector2(4, 4)
-texture = ExtResource("14_t1dsl")
-
-[node name="KawaiiCursor" type="Sprite2D" parent="Settings"]
-texture_filter = 6
-position = Vector2(220, 650)
-scale = Vector2(2, 2)
-texture = ExtResource("15_tiv10")
 
 [node name="Tileflag2" type="Sprite2D" parent="Settings"]
 texture_filter = 1
-position = Vector2(221, 349)
+position = Vector2(90, 740)
 scale = Vector2(4, 4)
 texture = ExtResource("16_8jdqf")
 
 [node name="Tileflag3" type="Sprite2D" parent="Settings"]
 texture_filter = 1
-position = Vector2(220, 800)
+position = Vector2(90, 920)
 scale = Vector2(4, 4)
-texture = ExtResource("16_8jdqf")
+texture = ExtResource("14_t1dsl")
 
 [node name="Tileflag" type="Sprite2D" parent="Settings"]
 texture_filter = 1
-position = Vector2(221, 217)
+position = Vector2(90, 89)
 scale = Vector2(4, 4)
-texture = ExtResource("16_8jdqf")
+texture = ExtResource("13_ghjvr")
+
+[node name="KawaiiCursor" type="Sprite2D" parent="Settings"]
+texture_filter = 6
+position = Vector2(136, 136)
+scale = Vector2(2, 2)
+texture = ExtResource("15_tiv10")
 
 [node name="Back" type="Button" parent="Settings"]
 layout_mode = 1
@@ -488,6 +486,136 @@ grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("4_pu2g8")
 text = "Back"
+
+[node name="GridContainer" type="GridContainer" parent="Settings"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 26.0
+offset_top = -300.0
+offset_right = 290.0
+offset_bottom = 92.0
+grow_vertical = 2
+columns = 2
+
+[node name="onestud" type="TextureRect" parent="Settings/GridContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("15_ndmm1")
+
+[node name="oneblood" type="TextureRect" parent="Settings/GridContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("16_5h2tk")
+
+[node name="twopearls" type="TextureRect" parent="Settings/GridContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("17_yr05y")
+
+[node name="twodots" type="TextureRect" parent="Settings/GridContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("18_netu0")
+
+[node name="threeblood" type="TextureRect" parent="Settings/GridContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("19_ghye2")
+
+[node name="threedots" type="TextureRect" parent="Settings/GridContainer"]
+texture_filter = 1
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+texture = ExtResource("20_o6637")
+
+[node name="Label2" type="Label" parent="Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -656.0
+offset_top = -308.0
+offset_right = -240.0
+offset_bottom = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_pu2g8")
+theme_override_constants/line_spacing = 15
+theme_override_font_sizes/font_size = 120
+text = "- Ones
+- Twos
+- Threes
+"
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -785.0
+offset_top = 124.0
+offset_right = -165.0
+offset_bottom = 276.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_pu2g8")
+theme_override_constants/line_spacing = 15
+theme_override_font_sizes/font_size = 110
+text = "- Flagged Tile
+"
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -785.0
+offset_top = 308.0
+offset_right = -165.0
+offset_bottom = 460.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_pu2g8")
+theme_override_constants/line_spacing = 15
+theme_override_font_sizes/font_size = 110
+text = "- Mine Tile
+"
+vertical_alignment = 1
+
+[node name="Label5" type="Label" parent="Settings"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -760.0
+offset_top = -516.0
+offset_right = -140.0
+offset_bottom = -364.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_pu2g8")
+theme_override_constants/line_spacing = 15
+theme_override_font_sizes/font_size = 110
+text = "Click on 'em!
+"
+vertical_alignment = 1
 
 [node name="KawaiiAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_s34qa")
